@@ -1,5 +1,4 @@
-import Box from '@mui/material/Box';
-import { TextField, FormControl, FormHelperText, Button, Card, Typography } from '@mui/material';
+import { Box, TextField, FormControl, FormHelperText, Button, Card, Typography } from '@mui/material';
 
 const QuoteAddForm = () => {
   return (
@@ -16,7 +15,7 @@ const QuoteAddForm = () => {
           <TextField id='author' label='Author' variant='outlined' />
           <FormHelperText id='author-helper-text'>We'll never share your email.</FormHelperText>
         </FormControl>
-        <Button variant='contained'>Add quote</Button>
+        <Button variant='outlined'>Add quote</Button>
         <Button variant='text' sx={{ ml: 2 }}>
           Cancel
         </Button>

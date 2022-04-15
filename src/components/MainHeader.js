@@ -1,11 +1,5 @@
 import React from 'react';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
-
-import AddIcon from '@mui/icons-material/Add';
+import { AppBar, Box, Toolbar, Typography, Tabs, Tab } from '@mui/material';
 
 const MainHeader = () => {
   return (
@@ -15,9 +9,12 @@ const MainHeader = () => {
           <Typography variant='h6' component='div' sx={{ flexGrow: 1 }}>
             Quotes
           </Typography>
-          <Button color='inherit' startIcon={<AddIcon />}>
-            Add Quote
-          </Button>
+          {/* <Button color='inherit'>All Quotes</Button>
+          <Button color='inherit'>Add Quote</Button> */}
+          <Tabs aria-label='basic tabs example'>
+            <Tab label='All Quotes' />
+            <Tab label='Add Quote' />
+          </Tabs>
         </Toolbar>
       </AppBar>
     </Box>

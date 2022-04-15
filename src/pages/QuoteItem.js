@@ -1,10 +1,6 @@
 import React from 'react';
 
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import Typography from '@mui/material/Typography';
-import { Button, CardActionArea, CardActions } from '@mui/material';
-import Badge from '@mui/material/Badge';
+import { Card, CardContent, CardActionArea, Typography } from '@mui/material';
 
 const QuoteItem = (props) => {
   return (
@@ -19,13 +15,6 @@ const QuoteItem = (props) => {
           </Typography>
         </CardContent>
       </CardActionArea>
-      <CardActions>
-        <Badge badgeContent={0} color='secondary'>
-          <Button variant='outlined' size='small' color='secondary'>
-            Comments
-          </Button>
-        </Badge>
-      </CardActions>
     </Card>
   );
 };
