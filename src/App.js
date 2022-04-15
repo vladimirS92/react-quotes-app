@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import CssBaseline from '@mui/material/CssBaseline';
 
-function App() {
+import MainHeader from './components/MainHeader';
+import Quotes from './pages/Quotes';
+import QuoteAddForm from './pages/QuoteAddForm';
+
+import Container from '@mui/material/Container';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+
+const App = () => {
+  const darkTheme = createTheme({
+    palette: {
+      mode: 'dark',
+    },
+  });
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={darkTheme}>
+      <CssBaseline />
+      <MainHeader />
+      <Container maxWidth='md' sx={{ pt: 8 }}>
+        <QuoteAddForm />
+        <Quotes />
+      </Container>
+    </ThemeProvider>
   );
-}
+};
 
 export default App;
