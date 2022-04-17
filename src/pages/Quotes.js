@@ -1,7 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 
+import { Skeleton } from '@mui/material';
+
 import QuoteItem from '../components/QuoteItem';
+import useHttp from '../hooks/use-http';
+import { getAllQuotes } from '../lib/api';
 
 import { Button } from '@mui/material';
 
@@ -36,13 +40,38 @@ const sortQuotes = (quotes, ascending) => {
 const Quotes = (props) => {
   const history = useHistory();
   const location = useLocation();
+  const { sendRequest, status, data: loadedQuotes, error } = useHttp(getAllQuotes, true);
+
+  useEffect(() => {
+    sendRequest();
+  }, [sendRequest]);
+
+  if (status === 'pending') {
+    return (
+      <>
+        <Skeleton variant='rectangular' sx={{ m: 2, height: 100 }} />
+        <Skeleton variant='rectangular' sx={{ m: 2, height: 100 }} />
+        <Skeleton variant='rectangular' sx={{ m: 2, height: 100 }} />
+      </>
+    );
+  }
+
+  if (error) {
+    //TBD
+    return <p>{error.message}</p>;
+  }
+
+  if (status === 'completed' && (!loadedQuotes || loadedQuotes.length === 0)) {
+    //TBD
+    return <p>No quotes found.</p>;
+  }
 
   //////////////////////default js class
   const queryParams = new URLSearchParams(location.search);
 
   const isSortingAsc = queryParams.get('sort') === 'asc';
 
-  const sortedQuotes = sortQuotes(TEST_QUOTES, isSortingAsc);
+  const sortedQuotes = sortQuotes(loadedQuotes, isSortingAsc);
 
   const changeSortingHandler = () => {
     history.push('/quotes?sort=' + (isSortingAsc ? 'desc' : 'asc'));
