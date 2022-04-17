@@ -1,6 +1,6 @@
 import { Box, TextField, FormControl, FormHelperText, Button, Typography } from '@mui/material';
 
-const CommentAddForm = () => {
+const CommentAddForm = (props) => {
   return (
     <Box component='form' autoComplete='off'>
       <Typography variant='subtitle1' gutterBottom color='text.primary'>
@@ -17,7 +17,7 @@ const CommentAddForm = () => {
       <Button size='small' variant='outlined'>
         Add comment
       </Button>
-      <Button size='small' variant='text' sx={{ ml: 2 }}>
+      <Button size='small' variant='text' onClick={props.closeAddForm} sx={{ ml: 2 }}>
         Cancel
       </Button>
     </Box>
