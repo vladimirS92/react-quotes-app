@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 
-import { Skeleton } from '@mui/material';
+import { Box, Skeleton } from '@mui/material';
 
 import QuoteItem from '../components/QuoteItem';
 import useHttp from '../hooks/use-http';
@@ -9,23 +9,23 @@ import { getAllQuotes } from '../lib/api';
 
 import { Button } from '@mui/material';
 
-export const TEST_QUOTES = [
-  {
-    id: 'q1',
-    text: 'As he read, I fell in love the way you fall asleep: slowly, and then all at once.',
-    author: 'John Green',
-  },
-  {
-    id: 'q2',
-    text: 'Loved you yesterday, love you still, always have, always will.',
-    author: 'Elaine Davis',
-  },
-  {
-    id: 'q3',
-    text: 'I saw that you were perfect, and so I loved you. Then I saw that you were not perfect and I loved you even more.',
-    author: 'Angelita Lim',
-  },
-];
+// export const TEST_QUOTES = [
+//   {
+//     id: 'q1',
+//     text: 'As he read, I fell in love the way you fall asleep: slowly, and then all at once.',
+//     author: 'John Green',
+//   },
+//   {
+//     id: 'q2',
+//     text: 'Loved you yesterday, love you still, always have, always will.',
+//     author: 'Elaine Davis',
+//   },
+//   {
+//     id: 'q3',
+//     text: 'I saw that you were perfect, and so I loved you. Then I saw that you were not perfect and I loved you even more.',
+//     author: 'Angelita Lim',
+//   },
+// ];
 
 const sortQuotes = (quotes, ascending) => {
   return quotes.sort((quoteA, quoteB) => {
@@ -48,11 +48,12 @@ const Quotes = (props) => {
 
   if (status === 'pending') {
     return (
-      <>
+      <Box sx={{ mt: 4 }}>
+        <Skeleton variant='rectangular' sx={{ m: 3, height: 40, width: 150 }} />
         <Skeleton variant='rectangular' sx={{ m: 2, height: 100 }} />
         <Skeleton variant='rectangular' sx={{ m: 2, height: 100 }} />
         <Skeleton variant='rectangular' sx={{ m: 2, height: 100 }} />
-      </>
+      </Box>
     );
   }
 

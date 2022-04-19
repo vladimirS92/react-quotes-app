@@ -1,5 +1,5 @@
 import React from 'react';
-import { AppBar, Toolbar, Typography, Button } from '@mui/material';
+import { AppBar, Toolbar, Typography, Button, Box } from '@mui/material';
 import { Route, Link } from 'react-router-dom';
 
 const MainNav = () => {
@@ -12,9 +12,11 @@ const MainNav = () => {
     <>
       <AppBar position='fixed'>
         <Toolbar>
-          <Typography variant='h6' component='div' sx={{ flexGrow: 1 }}>
-            Quotes
-          </Typography>
+          <Box component={Link} to='/' sx={{ flexGrow: 1, textDecoration: 0 }}>
+            <Typography variant='h5' component='div' color='white'>
+              Quotes
+            </Typography>
+          </Box>
           <Route path={'/add'} exact>
             <Button sx={{ mr: 2 }} component={Link} to={'/quotes'}>
               All Quotes

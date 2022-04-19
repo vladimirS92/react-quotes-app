@@ -69,6 +69,7 @@ export const addComment = async (requestData) => {
 
 export const getAllComments = async (quoteId) => {
   const response = await fetch(FIREBASE_APIURL + '/comments/' + quoteId + '.json');
+
   const data = await response.json();
 
   if (!response.ok) {

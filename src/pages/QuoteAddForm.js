@@ -59,7 +59,7 @@ const QuoteAddForm = (props) => {
 
   return (
     <>
-      {props.isLoading && <Skeleton variant='rectangular' sx={{ m: 2, height: 300 }} />}
+      {props.isLoading && <Skeleton variant='rectangular' sx={{ m: 2, height: 250 }} />}
       {!props.isLoading && (
         <Card sx={{ m: 2, p: 2 }}>
           <Prompt

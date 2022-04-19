@@ -6,16 +6,19 @@ import useHttp from '../hooks/use-http';
 import { addComment } from '../lib/api';
 
 const CommentAddForm = (props) => {
+  // add comment request
   const { sendRequest, status, error } = useHttp(addComment);
 
   const { onAddedComment } = props;
 
   useEffect(() => {
     if (status === 'completed' && !error) {
+      // notify parent that comment is added
       onAddedComment();
     }
   }, [status, error, onAddedComment]);
 
+  //validation
   const {
     value: nameValue,
     isValueValid: nameValueIsValid,
@@ -34,11 +37,7 @@ const CommentAddForm = (props) => {
     reset: resetCommentValue,
   } = useInput((valueData) => valueData.trim() !== '');
 
-  // let formIsValid = false;
-  // if (nameValueIsValid && commentValueIsValid) {
-  //   return (formIsValid = true);
-  // }
-
+  //form submit
   const submitFormHandler = (event) => {
     event.preventDefault();
 
@@ -49,7 +48,10 @@ const CommentAddForm = (props) => {
     const enteredText = commentValue;
     const enteredName = nameValue;
 
-    sendRequest({ commentData: { text: enteredText, name: enteredName }, quoteId: props.quoteId });
+    //send request
+    sendRequest({ commentData: { text: enteredText, userName: enteredName }, quoteId: props.qId });
+    // props.onAddedComment();
+    // props.closeAddForm();
 
     resetNameValue();
     resetCommentValue();
@@ -61,19 +63,6 @@ const CommentAddForm = (props) => {
       <Typography variant='subtitle1' gutterBottom color='text.primary'>
         Add comment
       </Typography>
-      <FormControl fullWidth sx={{ my: 1 }}>
-        <TextField
-          error={nameValueIsInvalid}
-          size='small'
-          id='name'
-          label='Your name'
-          variant='outlined'
-          value={nameValue}
-          onChange={onChangeNameValue}
-          onBlur={onBlurNameValue}
-        />
-        {nameValueIsInvalid && <FormHelperText id='name-helper-text'>Could not be empty.</FormHelperText>}
-      </FormControl>
       <FormControl fullWidth sx={{ my: 1 }}>
         <TextField
           error={commentValueIsInvalid}
@@ -88,6 +77,19 @@ const CommentAddForm = (props) => {
           onBlur={onBlurCommentValue}
         />
         {commentValueIsInvalid && <FormHelperText id='comment-helper-text'>Could not be empty.</FormHelperText>}
+      </FormControl>
+      <FormControl fullWidth sx={{ my: 1 }}>
+        <TextField
+          error={nameValueIsInvalid}
+          size='small'
+          id='name'
+          label='Your name'
+          variant='outlined'
+          value={nameValue}
+          onChange={onChangeNameValue}
+          onBlur={onBlurNameValue}
+        />
+        {nameValueIsInvalid && <FormHelperText id='name-helper-text'>Could not be empty.</FormHelperText>}
       </FormControl>
       <Button type='submit' size='small' variant='outlined'>
         Add comment
