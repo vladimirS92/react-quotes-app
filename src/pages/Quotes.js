@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 
 import { Box, Skeleton } from '@mui/material';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import ArrowDropUpIcon from '@mui/icons-material/ArrowDropUp';
 
 import QuoteItem from '../components/QuoteItem';
 import useHttp from '../hooks/use-http';
@@ -49,7 +51,7 @@ const Quotes = (props) => {
   if (status === 'pending') {
     return (
       <Box sx={{ mt: 4 }}>
-        <Skeleton variant='rectangular' sx={{ m: 3, height: 40, width: 150 }} />
+        <Skeleton variant='rectangular' sx={{ m: 2, height: 32, width: 150 }} />
         <Skeleton variant='rectangular' sx={{ m: 2, height: 100 }} />
         <Skeleton variant='rectangular' sx={{ m: 2, height: 100 }} />
         <Skeleton variant='rectangular' sx={{ m: 2, height: 100 }} />
@@ -84,7 +86,13 @@ const Quotes = (props) => {
 
   return (
     <>
-      <Button variant='outlined' onClick={changeSortingHandler} sx={{ m: 2 }}>
+      <Button
+        size='small'
+        variant='outlined'
+        onClick={changeSortingHandler}
+        sx={{ m: 2 }}
+        startIcon={isSortingAsc ? <ArrowDropDownIcon /> : <ArrowDropUpIcon />}
+      >
         Sort {!isSortingAsc ? 'Ascending' : 'Descending'}
       </Button>
       {QuotesList}

@@ -1,5 +1,6 @@
 import React from 'react';
-import { AppBar, Toolbar, Typography, Button, Box } from '@mui/material';
+import { AppBar, Toolbar, Typography, Button, Box, IconButton } from '@mui/material';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { Route, Link } from 'react-router-dom';
 
 const MainNav = () => {
@@ -23,9 +24,12 @@ const MainNav = () => {
             </Button>
           </Route>
           <Route path={'/quotes/'} exact>
-            <Button variant='contained' component={Link} to={'/add'}>
+            <Button sx={{ mx: 4 }} variant='contained' component={Link} to={'/add'}>
               Add Quote
             </Button>
+            <IconButton color='primary' aria-label='profile' component={Link} to={'/profile'}>
+              <AccountCircleIcon />
+            </IconButton>
           </Route>
           {/* <Tabs value={activeTab} onChange={tabHandler}>
               <Tab label='All Quotes' component={Link} to={'/quotes'} />

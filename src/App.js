@@ -9,6 +9,8 @@ import Quotes from './pages/Quotes';
 import QuoteDetails from './pages/QuoteDetails';
 // import Layout from './layout/Layout';
 import MainNav from './components/MainNav';
+import Auth from './pages/Auth';
+import Profile from './pages/Profile';
 
 const NewQuote = React.lazy(() => import('./pages/NewQuote'));
 
@@ -30,6 +32,8 @@ const App = () => {
           <Route path='/' exact>
             <Redirect to='/quotes' />
           </Route>
+          <Route path='/auth' exact component={Auth} />
+          <Route path='/profile' exact component={Profile} />
           <Route path='/quotes' exact component={Quotes} />
           <Route path='/quotes/:quoteId' component={QuoteDetails} />
           <Suspense fallback={<Skeleton variant='rectangular' sx={{ m: 2, height: 300 }} />}>
