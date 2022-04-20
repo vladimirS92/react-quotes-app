@@ -12,7 +12,7 @@ import { getSingleQuote } from '../lib/api';
 
 const QuoteDetails = () => {
   const { sendRequest, status, data: loadedQuote, error } = useHttp(getSingleQuote, true);
-  console.log(loadedQuote);
+
   const params = useParams();
   const history = useHistory();
   const { quoteId } = params;
@@ -25,8 +25,7 @@ const QuoteDetails = () => {
   if (status === 'pending') {
     return (
       <Box sx={{ m: 2, mt: 8 }}>
-        <Skeleton />
-        <Skeleton width='60%' />
+        <Skeleton variant='rectangular' sx={{ height: 100 }} />
       </Box>
     );
   }
@@ -45,7 +44,7 @@ const QuoteDetails = () => {
   }
 
   const goBackHandler = () => {
-    history.push('/');
+    history.replace('/quotes');
   };
 
   return (
@@ -64,7 +63,7 @@ const QuoteDetails = () => {
           </Typography>
         </Box>
         <Button variant='text' startIcon={<ArrowBackIcon />} onClick={goBackHandler}>
-          Go back
+          Go to list
         </Button>
         <Route path={`/quotes/${quoteId}`} exact>
           <Button variant='text' sx={{ mx: 2 }} startIcon={<CommentIcon />} component={Link} to={`/quotes/${quoteId}/comments`}>

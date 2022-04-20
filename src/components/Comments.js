@@ -51,7 +51,12 @@ const Comments = (props) => {
   let comments;
 
   if (status === 'pending') {
-    return (comments = <Skeleton variant='rectangular' sx={{ m: 2, height: 300 }} />);
+    return (comments = (
+      <Box>
+        <Skeleton variant='rectangular' sx={{ m: 2, height: 100 }} />
+        <Skeleton variant='rectangular' sx={{ m: 2, height: 100 }} />
+      </Box>
+    ));
   }
 
   if (status === 'completed' && (loadedComments || loadedComments.length > 0)) {

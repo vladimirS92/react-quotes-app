@@ -11,12 +11,11 @@ const NewQuote = () => {
 
   useEffect(() => {
     if (status === 'completed') {
-      history.push('/');
+      history.replace('/quotes');
     }
   }, [status, history]);
 
   const addQuoteHandler = (data) => {
-    // console.log(data);
     sendRequest(data);
   };
 

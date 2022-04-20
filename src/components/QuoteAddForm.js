@@ -101,7 +101,7 @@ const QuoteAddForm = (props) => {
             <Button type='submit' disabled={!formIsValid} variant='outlined'>
               Add quote
             </Button>
-            <Button sx={{ ml: 2 }} type='button' variant='text' component={Link} to='/'>
+            <Button sx={{ ml: 2 }} type='button' variant='text' component={Link} to='/quotes'>
               Cancel
             </Button>
           </Box>
